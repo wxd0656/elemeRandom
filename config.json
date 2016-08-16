@@ -1,0 +1,8 @@
+{
+	"API_BAIDU_MAP_BASE" : "http://api.map.baidu.com",
+	"API_BAIDU_MAP_SEARCH" : "/place/v2/search",
+	"API_BAIDU_MAP_AK" : "7IZ6fgGEGohCrRKUE9Rj4TSQ",
+	"API_ELEME_BASE" : "https://www.ele.me/restapi",
+	"API_ELEME_RESTAURANTS" : "/shopping/restaurants",
+	"API_ELEME_GEOHASH" : "wtw376s8gs5"
+}
