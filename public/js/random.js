@@ -2,12 +2,14 @@ $(function () {
     var run = 0,
         heading = $("h1"),
         timer,
-        selected;
+        selected,
+        list = [];
 
     $("#start").click(function () {
-        // var list = $("#list").val().replace(/ +/g, " ").replace(/^ | $/g, "").split(" ");
-        var list = JSON.parse($("#list").val());
-        // console.log(list);
+        if (list.length===0) {
+            alert('这个收货地址附近可没有餐馆哦！你不会填了火星吧？！');
+            return;
+        }
         if (!run) {
             heading.html(heading.html().replace("揍吃这！", "吃点儿嘛啊？"));
             $(this).val("停止");
@@ -43,11 +45,56 @@ $(function () {
             } );
             run = 0;
         };
+        // var list = $("#list").val().replace(/ +/g, " ").replace(/^ | $/g, "").split(" ");
+        // var list = JSON.parse($("#list").val());
+        // console.log(list);
+        
     });
 
     document.onkeydown = function enter(e) {
         var e = e || event;
         if (e.keyCode == 13) $("#start").trigger("click");
+    };
+
+
+    $('#place').autocomplete({
+        delay: 1000,
+        source: function( request, response ) {
+            $.ajax({
+                url: "/place",
+                dataType: "json",
+                data:{
+                    city: { latitude : $("#city").data('lat'),longitude: $("#city").data('lnt')},
+                    place: request.term
+                },
+                success: function( data ) {
+                    response(data.places);
+                }
+            });
+        },
+        focus: function( event, ui ) {
+            $( "#place" ).val( ui.item.name );
+            return false;
+        },
+        select: function( event, ui ) {
+            console.log(ui.item);
+            $.ajax({
+                url: "/search",
+                dataType: "json",
+                data:{
+                    geohash: ui.item.geohash
+                },
+                success: function(data) {
+                    list = data.restaurants;
+                }
+            })
+            return false;
+        }
+    })
+    .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+        return $( "<li>" )
+            .append( "<a><b>" + item.name + "</b><br><font size='2'>" + item.address + "</font></a>" )
+            .appendTo( ul );
     };
 });
 
@@ -67,3 +114,4 @@ var buildDetial = function(obj) {
 
     return html.join('');
 }
+

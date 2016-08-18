@@ -66,11 +66,44 @@ var getRestaurants = function(lat, lng, geohash, limit, offset, callback) {
 	short_address: "漕东支路85号"
  * }
  */
-var getPlace = function(keyword, limit, type) {
+var getPlace = function(geohash, keyword, limit, type, callback) {
 	var url = config.API_ELEME_BASE + config.API_ELEME_POIS;
 	var params = [];
+	params.push('geohash=' + geohash)
 	params.push('keyword=' + keyword);
 	params.push('limit=' + limit);
+	params.push('type=' + type);
+
+	var paramsStr = params.join('&');
+
+	url = url + '?' + paramsStr;
+
+	console.log(url);
+
+	request.get(url, function(err, res, body) {
+		if (err) {
+			return callback(err);
+		}
+		if (res.statusCode==200) {
+			// console.log(body);
+			var json = JSON.parse(body);
+			callback(null, json);
+		} else {
+			callback(new Error('request error : ' + res.statusCode));
+		}
+	});
+}
+
+
+// https://www.ele.me/restapi/v1/cities?type=guess
+/**
+ * 获取城市信息
+ * @param  {[type]} type [group | guess] (根据首字母排序 | 根据ip地址猜你在哪)
+ * @return {[type]}      [description]
+ */
+var getCities = function(type, callback) {
+	var url = config.API_ELEME_BASE + config.API_ELEME_CITIES;
+	var params = [];
 	params.push('type=' + type);
 
 	var paramsStr = params.join('&');
@@ -92,6 +125,6 @@ var getPlace = function(keyword, limit, type) {
 	});
 }
 
-
-
 exports.getRestaurants = getRestaurants;
+exports.getPlace = getPlace;
+exports.getCities = getCities;

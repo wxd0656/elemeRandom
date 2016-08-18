@@ -15,12 +15,14 @@ body {
 }
 
 #wrapper {
-    position: absolute;
+    /*position: absolute;
     top: 30%;
-    left: 50%;
-    margin-top: -60px;
-    margin-left: -250px;
-    width: 500px;
+    left: 50%;*/
+    /*margin-top: -60px;
+    margin-left: -250px;*/
+    margin: auto;
+    margin-top: 260px;
+    width: 800px;
     height: 120px;
     text-align: center;
 }
@@ -36,7 +38,7 @@ body {
     font-weight: 700;
 }
 
-#start {
+.start {
     width: 120px;
     height: 40px;
     +margin-left: 260px;
@@ -47,11 +49,11 @@ body {
 
 #place {
     width: 320px;
-    height: 30px;
+    /*height: 30px;
     +margin-left: 260px;
     vertical-align: middle;
     font-family: "微软雅黑";
-    cursor: pointer;
+    cursor: pointer;*/
 }
 
 #cfg {
@@ -111,4 +113,18 @@ body {
     color: #fc742f;
     width: 250px;
     height: auto;
+    padding: 5px;
 }
+
+
+.container { width: 800px; margin: 0 auto; }
+
+.autocomplete-suggestions { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; border: 1px solid #999; background: #FFF; cursor: default; overflow: auto; -webkit-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); -moz-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-no-suggestion { padding: 2px 5px;}
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: bold; color: #000; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { font-weight: bold; font-size: 16px; color: #000; display: block; border-bottom: 1px solid #000; }
+
+.input { font-size: 24px; font-family: "微软雅黑"; padding: 5px; border: 1px solid #CCC; margin: 20px 0;}

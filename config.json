@@ -4,5 +4,7 @@
 	"API_BAIDU_MAP_AK" : "7IZ6fgGEGohCrRKUE9Rj4TSQ",
 	"API_ELEME_BASE" : "https://www.ele.me/restapi",
 	"API_ELEME_RESTAURANTS" : "/shopping/restaurants",
-	"API_ELEME_GEOHASH" : "wtw376s8gs5"
+	"API_ELEME_GEOHASH" : "wtw376s8gs5",
+	"API_ELEME_CITIES" : "/v1/cities",
+	"API_ELEME_POIS" : "/v2/pois"
 }
