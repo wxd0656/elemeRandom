@@ -103,12 +103,14 @@ var getPlace = function(geohash, keyword, limit, type, callback) {
  */
 var getCities = function(type, callback) {
 	var url = config.API_ELEME_BASE + config.API_ELEME_CITIES;
-	var params = [];
-	params.push('type=' + type);
+	// var params = [];
+	// params.push('type=' + type);
 
-	var paramsStr = params.join('&');
+	// var paramsStr = params.join('&');
 
-	url = url + '?' + paramsStr;
+	// url = url + '?' + paramsStr;
+
+	url = url + '/' +type;
 
 	console.log(url);
 
